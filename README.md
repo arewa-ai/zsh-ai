@@ -95,6 +95,10 @@ echo 'export ZSH_AI_PROVIDER="openai"' >> ~/.zshrc
 
 # Or use local Ollama (free, private)
 echo 'export ZSH_AI_PROVIDER="ollama"' >> ~/.zshrc
+
+# Or Arewa AI
+echo 'export AREWA_API_KEY="your-key-here"' >> ~/.zshrc
+echo 'export ZSH_AI_PROVIDER="arewa"' >> ~/.zshrc
 ```
 
 **4. Restart your terminal and try it!**
