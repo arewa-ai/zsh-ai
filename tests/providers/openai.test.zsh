@@ -267,18 +267,19 @@ assert_not_empty() {
 
 # Run tests
 echo "Running OpenAI provider tests..."
-test_openai_query_success && echo "✓ OpenAI query success"
-test_openai_query_error_response && echo "✓ OpenAI error response handling"
-test_openai_json_escaping && echo "✓ OpenAI JSON escaping"
-test_handles_response_with_newline && echo "✓ Handles response with trailing newline"
-test_handles_response_without_jq && echo "✓ Handles response without jq and with newline"
-test_uses_default_url_when_not_configured && echo "✓ Uses default URL when not configured"
-test_uses_custom_url_when_configured && echo "✓ Uses custom URL when configured"
-test_uses_perplexity_url && echo "✓ Uses Perplexity URL"
-test_uses_max_tokens_for_gpt4_models && echo "✓ Uses max_tokens for gpt-4 models"
-test_uses_max_tokens_for_gpt35_models && echo "✓ Uses max_tokens for gpt-3.5 models"
-test_uses_max_completion_tokens_for_gpt5_models && echo "✓ Uses max_completion_tokens for gpt-5 models"
-test_uses_max_completion_tokens_for_o1_models && echo "✓ Uses max_completion_tokens for o1 models"
+test_openai_query_success && echo "✓ OpenAI query success" || exit 1
+test_openai_query_error_response && echo "✓ OpenAI error response handling" || exit 1
+test_openai_json_escaping && echo "✓ OpenAI JSON escaping" || exit 1
+test_handles_response_with_newline && echo "✓ Handles response with trailing newline" || exit 1
+test_handles_response_without_jq && echo "✓ Handles response without jq and with newline" || exit 1
+test_uses_default_url_when_not_configured && echo "✓ Uses default URL when not configured" || exit 1
+test_uses_custom_url_when_configured && echo "✓ Uses custom URL when configured" || exit 1
+test_uses_perplexity_url && echo "✓ Uses Perplexity URL" || exit 1
+test_uses_max_tokens_for_gpt4_models && echo "✓ Uses max_tokens for gpt-4 models" || exit 1
+test_uses_max_tokens_for_gpt35_models && echo "✓ Uses max_tokens for gpt-3.5 models" || exit 1
+test_uses_max_completion_tokens_for_gpt5_models && echo "✓ Uses max_completion_tokens for gpt-5 models" || exit 1
+test_uses_max_completion_tokens_for_o1_models && echo "✓ Uses max_completion_tokens for o1 models" || exit 1
+
 
 # Tests for keyless OpenAI-compatible endpoints
 echo ""
@@ -291,11 +292,12 @@ test_openai_requires_key_for_default_url() {
     # Explicitly set to default URL to ensure test works
     export ZSH_AI_OPENAI_URL="https://api.openai.com/v1/chat/completions"
 
-    local result=$(_zsh_ai_validate_config 2>&1)
+    local result
+    result=$(_zsh_ai_validate_config 2>&1)
     local exit_code=$?
 
-    assert_equals "$exit_code" "1"
-    assert_contains "$result" "OPENAI_API_KEY not set"
+    assert_equals "$exit_code" "1" || return 1
+    assert_contains "$result" "OPENAI_API_KEY not set" || return 1
 }
 
 test_openai_works_without_key_for_custom_url() {
@@ -304,11 +306,12 @@ test_openai_works_without_key_for_custom_url() {
     export ZSH_AI_PROVIDER="openai"
     export ZSH_AI_OPENAI_URL="http://localhost:8080/v1/chat/completions"
 
-    local result=$(_zsh_ai_validate_config 2>&1)
+    local result
+    result=$(_zsh_ai_validate_config 2>&1)
     local exit_code=$?
 
     # Should pass validation without API key
-    assert_equals "$exit_code" "0"
+    assert_equals "$exit_code" "0" || return 1
 }
 
 test_openai_query_without_auth_header() {
@@ -376,11 +379,12 @@ test_openai_zsh_ai_key_passes_validation_for_default_url() {
     export ZSH_AI_PROVIDER="openai"
     export ZSH_AI_OPENAI_URL="https://api.openai.com/v1/chat/completions"
 
-    local result=$(_zsh_ai_validate_config 2>&1)
+    local result
+    result=$(_zsh_ai_validate_config 2>&1)
     local exit_code=$?
 
     # Should pass validation since ZSH_AI_OPENAI_API_KEY is set
-    assert_equals "$exit_code" "0"
+    assert_equals "$exit_code" "0" || return 1
 }
 
 test_openai_zsh_ai_key_takes_precedence() {
@@ -445,10 +449,10 @@ test_openai_falls_back_to_openai_api_key() {
     return 0
 }
 
-test_openai_requires_key_for_default_url && echo "✓ Requires API key for default OpenAI URL"
-test_openai_works_without_key_for_custom_url && echo "✓ Works without API key for custom URL"
-test_openai_query_without_auth_header && echo "✓ Omits Authorization header when no API key"
-test_openai_query_with_auth_header_when_key_set && echo "✓ Includes Authorization header when API key is set"
-test_openai_zsh_ai_key_passes_validation_for_default_url && echo "✓ ZSH_AI_OPENAI_API_KEY passes validation for default URL"
-test_openai_zsh_ai_key_takes_precedence && echo "✓ ZSH_AI_OPENAI_API_KEY takes precedence over OPENAI_API_KEY"
-test_openai_falls_back_to_openai_api_key && echo "✓ Falls back to OPENAI_API_KEY when ZSH_AI_OPENAI_API_KEY is not set"
+test_openai_requires_key_for_default_url && echo "✓ Requires API key for default OpenAI URL" || exit 1
+test_openai_works_without_key_for_custom_url && echo "✓ Works without API key for custom URL" || exit 1
+test_openai_query_without_auth_header && echo "✓ Omits Authorization header when no API key" || exit 1
+test_openai_query_with_auth_header_when_key_set && echo "✓ Includes Authorization header when API key is set" || exit 1
+test_openai_zsh_ai_key_passes_validation_for_default_url && echo "✓ ZSH_AI_OPENAI_API_KEY passes validation for default URL" || exit 1
+test_openai_zsh_ai_key_takes_precedence && echo "✓ ZSH_AI_OPENAI_API_KEY takes precedence over OPENAI_API_KEY" || exit 1
+test_openai_falls_back_to_openai_api_key && echo "✓ Falls back to OPENAI_API_KEY when ZSH_AI_OPENAI_API_KEY is not set" || exit 1

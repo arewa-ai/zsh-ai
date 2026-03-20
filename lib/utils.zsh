@@ -41,6 +41,8 @@ _zsh_ai_query() {
         _zsh_ai_query_grok "$query"
     elif [[ "$ZSH_AI_PROVIDER" == "mistral" ]]; then
         _zsh_ai_query_mistral "$query"
+    elif [[ "$ZSH_AI_PROVIDER" == "arewa" ]]; then
+        _zsh_ai_query_arewa "$query"
     else
         _zsh_ai_query_anthropic "$query"
     fi
@@ -78,6 +80,8 @@ zsh-ai() {
             echo "Grok model: $ZSH_AI_GROK_MODEL"
         elif [[ "$ZSH_AI_PROVIDER" == "mistral" ]]; then
             echo "Mistral model: $ZSH_AI_MISTRAL_MODEL"
+        elif [[ "$ZSH_AI_PROVIDER" == "arewa" ]]; then
+            echo "Arewa AI model: $ZSH_AI_AREWA_MODEL"
         fi
         return 1
     fi
