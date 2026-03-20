@@ -13,7 +13,7 @@ $ # find all files larger than 100mb modified in the last week
 $ find . -type f -size +100M -mtime -7    # ← appears instantly, ready to run
 ```
 
-Works with Anthropic Claude, OpenAI, Google Gemini, Mistral, Grok, and local models via Ollama. A single 5KB shell script with zero dependencies.
+Works with Anthropic Claude, OpenAI, Google Gemini, Mistral, Grok, Arewa AI, and local models via Ollama. A single 5KB shell script with zero dependencies.
 
 ## Why zsh-ai?
 
