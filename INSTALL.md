@@ -103,7 +103,7 @@ export AREWA_API_KEY="your-api-key-here"
 export ZSH_AI_PROVIDER="arewa"
 ```
 
-[Get your API key →](https://console.arewa.ai/)
+[Get your API key →](https://dashboard.arewa.ai/)
 
 ### OpenAI-Compatible Servers
 
