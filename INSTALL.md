@@ -215,7 +215,7 @@ export ZSH_AI_GROK_MODEL="grok-4-1-fast-non-reasoning"
 export ZSH_AI_GROK_URL="https://api.x.ai/v1/chat/completions"
 
 # Arewa AI
-export ZSH_AI_AREWA_MODEL="Qwen3-4B-Thinking-2507"
+export ZSH_AI_AREWA_MODEL="Qwen3.5-9B-Thinking"
 export ZSH_AI_AREWA_URL="https://api.arewa.ai/inference/v1/chat/completions"
 ```
 

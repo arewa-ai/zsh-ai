@@ -15,7 +15,7 @@
 : ${ZSH_AI_GROK_URL:="https://api.x.ai/v1/chat/completions"}  # Default Grok URL
 : ${ZSH_AI_MISTRAL_MODEL:="mistral-small-latest"}  # Default Mistral model
 : ${ZSH_AI_MISTRAL_URL:="https://api.mistral.ai/v1/chat/completions"}  # Default Mistral URL
-: ${ZSH_AI_AREWA_MODEL:="Qwen3-4B-Thinking-2507"}  # Default Arewa AI model
+: ${ZSH_AI_AREWA_MODEL:="Qwen3.5-9B-Thinking"}  # Default Arewa AI model
 : ${ZSH_AI_AREWA_URL:="https://api.arewa.ai/inference/v1/chat/completions"}  # Default Arewa AI URL
 
 # Optional: Extend the system prompt with custom instructions

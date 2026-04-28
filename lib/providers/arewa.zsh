@@ -54,8 +54,8 @@ EOF
     if command -v jq &> /dev/null; then
         local result=$(printf "%s" "$response" | jq -r '.choices[0].message.content // empty' 2>/dev/null)
         if [[ -z "$result" ]]; then
-            # Check for error message
-            local error=$(printf "%s" "$response" | jq -r '.error.message // empty' 2>/dev/null)
+            # Check for error message in 'error.message' or 'detail'
+            local error=$(printf "%s" "$response" | jq -r '.error.message // .detail // empty' 2>/dev/null)
             if [[ -n "$error" ]]; then
                 echo "API Error: $error"
             else
