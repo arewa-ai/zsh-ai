@@ -18,6 +18,24 @@ echo 'export ANTHROPIC_API_KEY="your-key-here"' >> ~/.zshrc
 source ~/.zshrc
 ```
 
+## Manual Installation (Git)
+
+If you prefer not to use Homebrew, you can install the plugin manually:
+
+```bash
+# 1. Clone the repo
+git clone https://github.com/matheusml/zsh-ai ~/.zsh-ai
+
+# 2. Add to your shell
+echo 'source ~/.zsh-ai/zsh-ai.plugin.zsh' >> ~/.zshrc
+
+# 3. Set up a provider (see next section)
+echo 'export ANTHROPIC_API_KEY="your-key-here"' >> ~/.zshrc
+
+# 4. Restart your terminal
+source ~/.zshrc
+```
+
 ## Verify It Works
 
 After installation, test that everything is set up correctly:
@@ -163,17 +181,6 @@ Add to your `.zshrc`:
 antigen bundle matheusml/zsh-ai
 ```
 
-### Manual Installation
-
-```bash
-# 1. Clone the repo
-git clone https://github.com/matheusml/zsh-ai ~/.zsh-ai
-
-# 2. Add to your ~/.zshrc
-echo "source ~/.zsh-ai/zsh-ai.plugin.zsh" >> ~/.zshrc
-
-# 3. Restart your terminal
-```
 
 ## Configuration Reference
 
